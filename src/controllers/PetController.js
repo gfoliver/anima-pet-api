@@ -43,5 +43,17 @@ module.exports = {
             status: !!pet,
             data: pet
         });
+    },
+
+    async delete(req, res) {
+        const { id } = req.params;
+
+        const index =  pets.findIndex(p => p.id == id);
+        if (index != -1)
+            pets.splice(index, 1);
+
+        return res.json({
+            status: index != -1
+        });
     }
 }
