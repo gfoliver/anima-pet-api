@@ -1,0 +1,21 @@
+{
+  "name": "express-template",
+  "version": "1.0.0",
+  "description": "A NodeJS express backend template",
+  "main": "src/index.js",
+  "author": "Guilherme Fleck Oliveira",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  }
+}
