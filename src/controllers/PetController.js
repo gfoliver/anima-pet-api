@@ -1,59 +1,48 @@
-const { v4: uuidv4 } = require('uuid');
+class PetController {
+    constructor(petRepository) {
+        this.petRepository = petRepository;
+    }
 
-let pets = [
-    {id: uuidv4(), name: "Exemplo", adopted: false}
-];
-
-module.exports = {
     async create(req, res) {
         const { name } = req.body;
 
-        const pet = {
-            id: uuidv4(),
-            name,
-            adopted: false
-        }
-
-        pets.push(pet)
+        const pet = this.petRepository.create(name);
 
         res.json({
             status: true,
             data: pet
         })
-    },
+    }
 
     async all(req, res) {
+        const pets = this.petRepository.all();
+
         res.json({
             status: true,
             data: pets
         })
-    },
+    }
 
     async adopt(req, res) {
         const { id } = req.body;
 
-        let pet = null;
-
-        if (pets.find(p => p.id == id)){
-            pet = pets.find(p => p.id == id);
-            pet.adopted = true;
-        }
+        const pet = this.petRepository.adopt(id);
 
         return res.json({
             status: !!pet,
             data: pet
         });
-    },
+    }
 
     async delete(req, res) {
         const { id } = req.params;
 
-        const index =  pets.findIndex(p => p.id == id);
-        if (index != -1)
-            pets.splice(index, 1);
+        const deleted = this.petRepository.delete(id);
 
         return res.json({
-            status: index != -1
+            status: deleted
         });
     }
 }
+
+module.exports = PetController;
