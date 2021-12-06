@@ -1,4 +1,4 @@
-const PetRepository = require('../src/repositories/PetRepository')
+const PetRepository = require('../../../src/repositories/PetRepository')
 
 let petRepository;
 
